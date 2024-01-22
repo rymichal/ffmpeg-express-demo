@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/process-video', (req, res) => {
-  const { text } = req.body;
+  const { text, start, end, x, y } = req.body;
 
   const currentDate = new Date();
 
@@ -18,9 +18,9 @@ router.post('/process-video', (req, res) => {
     drawtext=text='${text}':
     fontsize=124:
     fontcolor=black:
-    x=50:
-    y=(h-text_h-200):
-    enable='between(t, 2, 6)'
+    x=${x}:
+    y=(h-text_h-${y}):
+    enable='between(t, ${start}, ${end})'
   `;
 
   ffmpeg('./templates/bank.mp4')
